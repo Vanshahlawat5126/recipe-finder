@@ -1,0 +1,357 @@
+/* =========================
+   GLOBAL
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  background: #0f172a; /* dark modern background */
+  color: #e5e7eb;
+}
+
+/* =========================
+   APP WRAPPER
+========================= */
+.App {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.WebName {
+  font-size: 34px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
+.search-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.search-bar input {
+  width: 60%;
+  min-width: 240px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+  outline: none;
+  transition: 0.2s;
+}
+
+.search-bar input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.search-bar select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+/* =========================
+   RECIPE GRID
+========================= */
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+/* =========================
+   RECIPE CARD
+========================= */
+.recipe-card {
+  background: #1e293b;
+  padding: 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid #334155;
+  position: relative;
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  border-color: #38bdf8;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.recipe-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #f1f5f9;
+}
+
+.recipe-card p {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* =========================
+   BADGES
+========================= */
+.badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 11px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.badge.veg {
+  background: #22c55e;
+  color: #0f172a;
+}
+
+.badge.nonveg {
+  background: #ef4444;
+  color: white;
+}
+
+.badge.vegan {
+  background: #3b82f6;
+  color: white;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty-state {
+  text-align: center;
+  margin-top: 60px;
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+/* =========================
+   MODAL
+========================= */
+/* =========================
+   MODAL OVERLAY (glass effect)
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+/* =========================
+   MODAL BOX
+========================= */
+.modal-content {
+  background: #1e293b;
+  color: #e5e7eb;
+
+  padding: 24px;
+  border-radius: 14px;
+
+  width: 420px;
+  max-width: 92%;
+
+  max-height: 80vh;
+  overflow-y: auto;
+
+  position: relative;
+
+  border: 1px solid #334155;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+
+  animation: popIn 0.2s ease;
+}
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #334155;
+  color: white;
+
+  font-size: 18px;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  background: #ef4444;
+  transform: scale(1.05);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* modal animation */
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.modal-content h2 {
+  margin-bottom: 12px;
+}
+
+.modal-content h3 {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.modal-content ul {
+  padding-left: 18px;
+  margin-bottom: 10px;
+}
+
+.modal-content li {
+  margin-bottom: 6px;
+}
+
+/* =========================
+   SUBMIT TEXT
+========================= */
+.submitPrompt {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.submitPrompt a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.submitPrompt a:hover {
+  text-decoration: underline;
+}
+
+.recipe-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* 🔥 this is the main fix */
+}
+
+.recipe-detail h2 {
+  margin-bottom: 6px;
+}
+
+.servings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredients-section {
+  margin-top: 6px;
+}
+
+.ingredients-section h4 {
+  margin-bottom: 6px;
+}
+
+.ingredients-section ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.ingredients-section li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.time {
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.directions-section {
+  margin-top: 8px;
+}
+
+.directions-section ol {
+  padding-left: 18px;
+}
+
+.directions-section li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
