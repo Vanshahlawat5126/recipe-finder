@@ -45,11 +45,11 @@ function RecipeDetail({ recipe }) {
       {recipe.cookingDirections && recipe.cookingDirections.length > 0 && (
         <div className="directions-section">
           <h3>Directions</h3>
-          <ol>
+          <ul>
             {recipe.cookingDirections.map((step, index) => (
               <li key={index}>{step}</li>
             ))}
-          </ol>
+          </ul>
         </div>
       )}
 
