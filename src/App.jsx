@@ -28,20 +28,39 @@ function App() {
       const data = await res.json();
 
       if (data.meals) {
-        // convert API format to match your existing recipe structure
-        const converted = data.meals.map((meal) => ({
-          id: meal.idMeal,
-          name: meal.strMeal,
-          image: meal.strMealThumb,
-          category: meal.strCategory,
-          area: meal.strArea,
-          diet: [meal.strCategory.toLowerCase()],
-          ingredients: Object.keys(meal)
-            .filter((k) => k.startsWith("strIngredient") && meal[k])
-            .map((k) => ({ name: meal[k] })),
-          instructions: meal.strInstructions,
-          youtube: meal.strYoutube,
-        }));
+        const converted = data.meals.map((meal) => {
+          const ingredients = [];
+          for (let i = 1; i <= 20; i++) {
+            const name = meal[`strIngredient${i}`];
+            const measure = meal[`strMeasure${i}`];
+            if (name && name.trim()) {
+              ingredients.push({
+                name: name.trim(),
+                unit: measure && measure.trim() ? measure.trim() : "to taste",
+              });
+            }
+          }
+
+          const cookingDirections = meal.strInstructions
+            ? meal.strInstructions
+                .split(/\r\n|\n/)
+                .map((s) => s.trim())
+                .filter((s) => s.length > 0)
+            : [];
+
+          return {
+            id: meal.idMeal,
+            name: meal.strMeal,
+            image: meal.strMealThumb,
+            category: meal.strCategory,
+            area: meal.strArea,
+            diet: [meal.strCategory.toLowerCase()],
+            time: null,
+            ingredients,
+            cookingDirections,
+            youtube: meal.strYoutube,
+          };
+        });
         setRecipes(converted);
       } else {
         setRecipes([]);
@@ -54,7 +73,6 @@ function App() {
     setLoading(false);
   }
 
-  // filter on top of API results
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesFilter =
       filter === "all" ? true : recipe.diet.includes(filter);

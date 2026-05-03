@@ -36,7 +36,7 @@ function RecipeDetail({ recipe }) {
         <ul>
           {recipe.ingredients.map((item, i) => (
             <li key={i}>
-              {item.name} — {item.unit || "to taste"}
+              {item.name} — {item.unit}
             </li>
           ))}
         </ul>
