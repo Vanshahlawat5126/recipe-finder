@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 import RecipeList from "./components/RecipeList";
@@ -14,6 +14,9 @@ function App() {
   const [error, setError] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [searched, setSearched] = useState(false);
+  useEffect(() => {
+    fetchRecipes("chicken");
+  }, []);
 
   async function fetchRecipes(query) {
     if (!query.trim()) return;
@@ -43,9 +46,9 @@ function App() {
 
           const cookingDirections = meal.strInstructions
             ? meal.strInstructions
-                .split(/\r\n|\n/)
-                .map((s) => s.trim())
-                .filter((s) => s.length > 0)
+              .split(/\r\n|\n/)
+              .map((s) => s.trim())
+              .filter((s) => s.length > 0)
             : [];
 
           return {
@@ -102,9 +105,7 @@ function App() {
       {loading && <p className="status">Searching...</p>}
       {error && <p className="status error">{error}</p>}
 
-      {!searched && !loading && (
-        <p className="status">Search for a recipe to get started...</p>
-      )}
+      
 
       {searched && !loading && filteredRecipes.length === 0 && !error && (
         <div className="empty-state">No recipes found 😢</div>
@@ -124,7 +125,7 @@ function App() {
       )}
 
       <p className="submitPrompt">
-        Want to add your recipe?{" "}
+        Wish to add your recipe?{" "}
         <a href="mailto:vansh27052007@gmail.com">Mail us</a>
       </p>
     </div>
