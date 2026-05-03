@@ -10,7 +10,6 @@ function RecipeDetail({ recipe }) {
 
       <h2>{recipe.name}</h2>
 
-      {/* IMAGE */}
       {recipe.image && (
         <img
           src={recipe.image}
@@ -19,10 +18,8 @@ function RecipeDetail({ recipe }) {
         />
       )}
 
-      {/* CATEGORY & AREA */}
       <p className="time">🍽 {recipe.category} • {recipe.area}</p>
 
-      {/* SERVINGS SECTION */}
       <div className="servings-section">
         <label>No. of servings: {servings}</label>
         <input
@@ -34,7 +31,6 @@ function RecipeDetail({ recipe }) {
         />
       </div>
 
-      {/* INGREDIENTS */}
       <div className="ingredients-section">
         <h4>Ingredients:</h4>
         <ul>
@@ -46,7 +42,6 @@ function RecipeDetail({ recipe }) {
         </ul>
       </div>
 
-      {/* DIRECTIONS */}
       {recipe.cookingDirections && recipe.cookingDirections.length > 0 && (
         <div className="directions-section">
           <h3>Directions</h3>
@@ -58,13 +53,11 @@ function RecipeDetail({ recipe }) {
         </div>
       )}
 
-      {/* YOUTUBE LINK */}
       {recipe.youtube && (
-        
+        <a
           href={recipe.youtube}
           target="_blank"
           rel="noopener noreferrer"
-          className="watch-btn"
           style={{
             display: "inline-block",
             marginTop: "16px",
